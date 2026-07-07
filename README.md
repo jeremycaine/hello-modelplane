@@ -177,7 +177,7 @@ curl -v http://localhost:8080/ml-team/qwen/chat/completions \
   -d '{"model":"mlx-community/Qwen2.5-0.5B-Instruct-4bit","messages":[{"role":"user","content":"Hello from Modelplane"}]}'
 ```
 
-The request flows: test curl → Modelplane gateway → `ModelService` → `ModelEndpoint` → host `vllm-metal` (Metal GPU) → response.
+The request flows: test curl → Modelplane gateway → `ModelService` → `ModelEndpoint` → host `vllm-metal` (Metal GPU) → model → response.
 
 ## 7. Test via an LLM client
 A minimal LLM client that pulls a Wikipedia summary, sends it to the local Qwen model
