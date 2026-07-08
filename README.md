@@ -164,7 +164,7 @@ kubectl get svc -A -l app.kubernetes.io/name=traefik
 kubectl port-forward -n traefik-system svc/traefik 8080:80
 ```
 
-## 6. Test end to end model call
+## 7. Test end to end model call
 Get the gateway's external IP (the MetalLB-assigned one), then call Modelplane's endpoint. A `ModelService` receives requests at `/<namespace>/<service>/v1/...` and strips only the `/<namespace>/<service>/` prefix. `rewritePath` on the `ModelEndpoint` should point at whatever path the backend actually serves — `/` for a backend already serving at `/v1/...` (like vLLM), or something else if the backend's API lives at a different path.
 
 ```bash
@@ -175,7 +175,7 @@ curl -v http://localhost:8080/ml-team/qwen/v1/chat/completions \
 
 The request flows: test curl → Modelplane gateway → `ModelService` → `ModelEndpoint` → host `vllm-metal` (Metal GPU) → model → response.
 
-## 7. Test via an LLM client
+## 8. Test via an LLM client
 A minimal LLM client that pulls a Wikipedia summary, sends it to the local Qwen model served through Modelplane (kind + Traefik + vllm-metal), and prints the
 model's answer.
 
